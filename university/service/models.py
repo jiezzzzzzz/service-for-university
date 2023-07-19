@@ -93,7 +93,7 @@ class Student(models.Model):
         verbose_name='Дата рождения',
         default='23.04.2003'
     )
-    year_of_admission = models.DateField(
+    date_of_admission = models.DateField(
         verbose_name='Дата поступления',
         auto_now_add=True
     )
