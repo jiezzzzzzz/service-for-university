@@ -1,20 +1,11 @@
 from django.db import models
 
 
-class DirectionOfTraining(models.Model):
-    name = models.CharField(max_length=20)
-    code = models.IntegerField(default=12345)
-
-
 class Curator(models.Model):
     name = models.CharField(max_length=20)
     surname = models.CharField(max_length=20)
     direction = models.OneToOneField(DirectionOfTraining, on_delete=models.CASCADE)
 
-
-class TrainingDiscipline(models.Model):
-    name = models.CharField(max_length=20)
-    direction = models.ForeignKey(DirectionOfTraining, on_delete=models.CASCADE)
 
 
 class Student(models.Model):
