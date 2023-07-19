@@ -19,7 +19,7 @@ class DirectionOfTraining(models.Model):
     class Meta:
         verbose_name = 'Направленние подготовки'
         verbose_name_plural = 'Направления подготовки'
-        ordering = ['-title']
+        ordering = ['name']
 
     def __str__(self):
         return f'{self.name}'
@@ -31,13 +31,13 @@ class TrainingDiscipline(models.Model):
         max_length=200)
     direction = models.ManyToManyField(
         DirectionOfTraining,
-        on_delete=models.CASCADE
+        verbose_name='Направление подготовки'
     )
 
     class Meta:
         verbose_name = 'Учебная дисциплина'
         verbose_name_plural = 'Учебные дисциплины'
-        ordering = ['-title']
+        ordering = ['-name']
 
     def __str__(self):
         return f'{self.name}'
