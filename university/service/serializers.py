@@ -14,7 +14,8 @@ class CuratorSerializer(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        exclude = ['year_of_admission', 'date_of_birth']
+        #exclude = ['year_of_admission', 'date_of_birth']
+        fields = ['name', 'surname', 'gender', 'group']
 
     def __init__(self, *args, curator_pk=None, **kwargs):
         if curator_pk:
@@ -53,6 +54,7 @@ class StudyGroupSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         curator_pk = self.context['curator_pk']
-        direction = DirectionOfTraining.objects.get(curator__pk=curator_pk)
-        group = StudyGroup.objects.create(direction=direction, **validated_data)
+        direct = DirectionOfTraining.objects.get(curator__pk=curator_pk)
+        validated_data['direction'] = direct
+        group = StudyGroup.objects.create(**validated_data)
         return group

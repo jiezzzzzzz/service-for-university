@@ -16,9 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from admin_service.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('administrator/', include('service.urls')),
-    path('curator/', include('admin_service.urls'))
+    path('university/admin/', include('service.urls')),
+    path('university/curator/', include('admin_service.urls')),
+    path('start_generate_report/', start_generate_report, name='start_generate_report'),
+    path('show_generate_report_status/<str:task_id>/', show_generate_report_status, name='show_generate_report_status'),
+    path('get_report/<str:task_id>/', get_report, name='get_report'),
+
 ]
