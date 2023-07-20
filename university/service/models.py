@@ -87,7 +87,8 @@ class Student(models.Model):
     group = models.ForeignKey(
         StudyGroup,
         verbose_name='Группа',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='group'
     )
     date_of_birth = models.DateField(
         verbose_name='Дата рождения',
